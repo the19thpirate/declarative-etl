@@ -8,6 +8,12 @@ def read_data(instruction):
     data = pd.read_csv(location)
     return data 
 
+def sanitize_headers(data):
+    columns = data.columns
+    cleaned_columns = [text.lower().replace(" ", "_").strip() for text in columns]
+    data.columns = cleaned_columns
+    return data
+
 def group_data(data, instructions):
     group_data_dict = instructions.get("group_data")
     columnList = group_data_dict.get("columns")
@@ -15,12 +21,6 @@ def group_data(data, instructions):
     groupedDf = data.groupby(columnList).agg(aggDict)
     groupedDf = groupedDf.reset_index().reset_index()
     return groupedDf
-
-def sanitize_headers(data):
-    columns = data.columns
-    cleaned_columns = [text.lower().replace(" ", "_").strip() for text in columns]
-    data.columns = cleaned_columns
-    return data
 
 def filter_data(data, instructions):
     column_name = instructions.get("column")

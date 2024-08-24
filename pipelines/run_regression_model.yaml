@@ -1,0 +1,37 @@
+instructions:
+- data_loader: "./data/healthcare_dataset.csv"
+# Health Care Dataset URL: https://www.kaggle.com/datasets/muhammadehsan000/healthcare-dataset-2019-2024?resource=download
+- sanitize_data:
+
+- scale_data:
+  scaler_type: "min_max"
+  columns: 
+    - age
+    - room_number
+  merge_dataset: True
+
+- split_data:
+  test_size: 0.70
+  random_state: 99
+  target: billing_amount
+  not_targets:
+    - age
+    - gender
+    - blood_type
+    - medical_condition
+    - medication
+    - test_results
+
+- build_regression_model:
+  model_type: "RandomForestRegressor"
+  hyper_parameters:
+    max_depth: 10
+    max_features: sqrt
+    n_estimators: 500
+    min_samples_split: 300
+    min_samples_leaf: 500
+    random_state: 999
+
+# - data_store: "./exports/transformed_data.csv"
+
+

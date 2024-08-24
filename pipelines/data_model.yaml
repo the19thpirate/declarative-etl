@@ -22,10 +22,10 @@ instructions:
       billing_amount: "mean"
 
 - single_column_transformer:
-  target_column_name: "age_by_2"
+  target_column_name: "root_age"
   column: age
-  formula: "x / 2"
+  formula: "np.sqrt(x)"
 
-# - data_store: "./exports/transformed_data.csv"
+- data_store: "./exports/transformed_data.csv"
 
 

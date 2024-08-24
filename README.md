@@ -5,6 +5,8 @@
 - Then this here is the tool for you
 - I am really bored guys.
 
+![alt text](https://github.com/the19thpirate/declarative-etl/blob/develop/funny-guy-saying-ok-isolated-white-background-73044470.webp)
+
 ## How to use this tool
 #### Currently only supports csv files.
 1. Store your csv file in the data folder.
