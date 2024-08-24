@@ -3,7 +3,7 @@
 - Are you a Data Scientist or a Data Analyst who is tired of writing code over and over again?
 - You still wanna seem tech savvy but have an ease in your basic day to day analysis?
 - Then this here is the tool for you
-
+- I am really bored guys.
 
 ## How to use this tool
 #### Currently only supports csv files.
@@ -15,3 +15,9 @@
 6. To run the pipeline simply run the following command: python reader.py {your_pipeline_name}.yaml
 7. If you are running a data modelling pipeline then you will find the transformed dataset in the exports folder as a csv.
 8. If you are running a regression model pipeline then you will find the model.pkl file in the model folder and its evaluation details inside the ./model/results folder.
+
+
+## Coming soon:
+1. Seaborn plots and visualization support.
+2. Classification models
+3. Unsupervised learning.
