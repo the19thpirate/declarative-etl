@@ -7,3 +7,5 @@ __pycache__
 model/*.csv
 model/results/*.csv
 model/*.pkl
+plots/univariate_plots/*.png
+plots/bivariate_plots/*.png

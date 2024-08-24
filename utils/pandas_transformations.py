@@ -8,6 +8,24 @@ def read_data(instruction):
     data = pd.read_csv(location)
     return data 
 
+def data_information(data):
+    return data.info()
+
+def data_description(data, instruction):
+    percentile_list = instruction.get("percentile_list")
+    describe_data = data.describe(
+        percentiles = percentile_list
+    )
+    return describe_data
+
+def fix_datatypes(data, instruction):
+    columns_dict = instruction.get("column_mapping")
+    
+    for column, datatype in columns_dict.items():
+        data[column] = data[column].astype(datatype)
+    
+    return data
+
 def sanitize_headers(data):
     columns = data.columns
     cleaned_columns = [text.lower().replace(" ", "_").strip() for text in columns]
