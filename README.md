@@ -1,4 +1,4 @@
-## Declarative ETL
+## Fruit Punch Samurai ETL Tool
 
 - Are you a Data Scientist or a Data Analyst who is tired of writing code over and over again?
 - You still wanna seem tech savvy but have an ease in your basic day to day analysis?
