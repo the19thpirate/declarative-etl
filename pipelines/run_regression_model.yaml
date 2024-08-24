@@ -23,7 +23,7 @@ instructions:
     - test_results
 
 - build_regression_model:
-  model_type: 
+  model_type: "RandomForestRegressor"
   hyper_parameters:
     max_depth: 10
     max_features: sqrt
@@ -32,29 +32,6 @@ instructions:
     min_samples_leaf: 500
     random_state: 999
 
-- filter_data:
-  column: gender
-  filter_value: "Male"
-  operator: "=="
-
-- filter_data:
-  column: billing_amount
-  filter_value: 20000
-  operator: ">"
-
-- group_data: 
-    columns:
-      - gender
-      - medical_condition
-    aggregations:
-      age: "mean"
-      billing_amount: "mean"
-
-- single_column_transformer:
-  target_column_name: "age_by_2"
-  column: age
-  formula: "x / 2"
-
-- data_store: "./exports/transformed_data.csv"
+# - data_store: "./exports/transformed_data.csv"
 
 

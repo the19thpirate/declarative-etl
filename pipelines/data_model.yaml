@@ -1,0 +1,31 @@
+instructions:
+- data_loader: "./data/healthcare_dataset.csv"
+# Health Care Dataset URL: https://www.kaggle.com/datasets/muhammadehsan000/healthcare-dataset-2019-2024?resource=download
+- sanitize_data:
+
+- filter_data:
+  column: gender
+  filter_value: "Male"
+  operator: "=="
+
+- filter_data:
+  column: billing_amount
+  filter_value: 20000
+  operator: ">"
+
+- group_data: 
+    columns:
+      - gender
+      - medical_condition
+    aggregations:
+      age: "mean"
+      billing_amount: "mean"
+
+- single_column_transformer:
+  target_column_name: "root_age"
+  column: age
+  formula: "np.sqrt(x)"
+
+- data_store: "./exports/transformed_data.csv"
+
+

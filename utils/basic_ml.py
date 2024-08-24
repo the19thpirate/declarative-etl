@@ -2,6 +2,7 @@ from sklearn import metrics
 import pandas as pd
 import numpy as np
 import warnings as wr
+import pickle
 wr.filterwarnings("ignore")
 
 # Scaling Module
@@ -73,7 +74,7 @@ def build_regression(data_dict, instructions):
         hyper_parameters = instructions.get("hyper_parameters")
         training_data = data_dict.get("training_data")
         testing_data = data_dict.get("testing_data")
-        model_name = data_dict.get("model_type")
+        model_name = data_dict.get("model_type", "model")
         validation_data = data_dict.get("validation_data")
         X_train, y_train = training_data[0], training_data[1]
         X_test, y_test = testing_data[0], testing_data[1]
@@ -85,15 +86,43 @@ def build_regression(data_dict, instructions):
         else:
             from sklearn.ensemble import GradientBoostingRegressor
             model = GradientBoostingRegressor()
-            
+
         print(X_train.shape, y_train.shape)
         model.fit(X_train, y_train)
+
         val_pred = model.predict(X_val)
-        val_result = np.sqrt(metrics.mean_squared_error(y_val, val_pred))
-        print(val_result)
-    # Simple Logistic Regression Module 
-    # Should allow the user to save the model as a pickle file
+        rmse = np.sqrt(metrics.mean_squared_error(y_val, val_pred))
+        r2_score = metrics.r2_score(y_val, val_pred)
+        mae = metrics.mean_absolute_error(y_val, val_pred)
+        validation_result = pd.DataFrame(
+            [{
+                'RMSE' : rmse, 'R2' : r2_score, "MAE" : mae
+            }]
+        )
+        
+        model.fit(pd.concat([X_train, X_val]), pd.concat([y_train, y_val]))
+        y_pred = model.predict(X_test)
+        rmse = np.sqrt(metrics.mean_squared_error(y_test, y_pred))
+        r2_score = metrics.r2_score(y_test, y_pred)
+        mae = metrics.mean_absolute_error(y_test, y_pred)
+
+        testing_result = pd.DataFrame(
+            [{
+                'RMSE' : rmse, 'R2' : r2_score, "MAE" : mae
+            }]
+        )
+
+        ## Saving the assets
+        validation_result.to_csv(f"./model/results/validation_result.csv")
+        testing_result.to_csv(f"./model/results/testing_result.csv")
+
+        with open(f"./model/{model_name}.pkl", "wb") as f:
+            pickle.dump(model, f)
+
+        return "Success"
     except Exception as e:
         print(e)
         print(e.__traceback__.tb_lineno)
 
+# Simple Logistic Regression Module 
+    

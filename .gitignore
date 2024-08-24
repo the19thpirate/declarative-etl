@@ -4,3 +4,6 @@ exports/*.csv
 data/*.zip
 __pycache__
 *.DS_Store
+model/*.csv
+model/results/*.csv
+model/*.pkl
