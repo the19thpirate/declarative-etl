@@ -1,4 +1,4 @@
-## Fruit Punch Samurai ETL Tool
+## Fruit Punch Data Analyst
 
 - Are you a Data Scientist or a Data Analyst who is tired of writing code over and over again?
 - You still wanna seem tech savvy but have an ease in your basic day to day analysis?
@@ -18,8 +18,18 @@
 7. If you are running a data modelling pipeline then you will find the transformed dataset in the exports folder as a csv.
 8. If you are running a regression model pipeline then you will find the model.pkl file in the model folder and its evaluation details inside the ./model/results folder.
 
+#### Visualization pipeline available for the following plots:
+1. Univariate plots available for plotting in the tool. Mention the columns in the yaml file that has to be visualized and the type of plot.
+2. Bivariate plots available for plotting, currently barplots and scatterplots are available. We can add newer plots as time goes on.
+
+#### Data Cleaning Module:
+1. Specify the column name and its desired datatype in the yaml for rectifying datatypes.
+
+#### Regex Search Module:
+1. Added a new pipeline for running a regex search on your garbage string columns.
+2. I know you won't provide proper details for the target columns' name so I will default it using the garbage column name you want to run this method for. 
+3. Provide proper details pls. follow the default pipeline to run the module.
 
 ## Coming soon:
-1. Seaborn plots and visualization support.
-2. Classification models
-3. Unsupervised learning.
+1. Classification models
+2. Unsupervised learning.

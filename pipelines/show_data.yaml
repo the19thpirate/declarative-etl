@@ -1,0 +1,22 @@
+instructions:
+
+- data_loader: "./data/healthcare_dataset.csv"
+- sanitize_data:
+# - view_data:
+- data_information:
+- fix_datatype:
+  column_mapping:
+    date_of_admission: datetime64[ns]
+    discharge_date: datetime64[ns]
+    age: float
+- data_information:
+
+# - data_description:
+#   percentile_list:
+#   - 0.01
+#   - 0.05
+#   - 0.10
+#   - 0.60
+#   - 0.85
+#   - 0.95
+#   - 0.99

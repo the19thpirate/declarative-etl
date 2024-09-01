@@ -1,0 +1,33 @@
+instructions:
+
+- data_loader: "./data/healthcare_dataset.csv"
+- sanitize_data:
+
+- univariate_analysis:
+  plot_type: pie
+  columns: 
+  - gender
+  plot_size: 
+    width: 15
+    height: 8
+
+- univariate_analysis:
+  plot_type: box
+  columns: 
+  - blood_type
+  - billing_amount
+  plot_size: 
+    width: 15
+    height: 8
+
+- bivariate_analysis:
+  plot_type: barplot
+  columns:
+    x: medical_condition
+    y: billing_amount
+  estimator: sum
+  hue_column: gender
+  plot_size: 
+    width: 15
+    height: 8
+
