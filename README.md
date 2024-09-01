@@ -25,6 +25,11 @@
 #### Data Cleaning Module:
 1. Specify the column name and its desired datatype in the yaml for rectifying datatypes.
 
+#### Regex Search Module:
+1. Added a new pipeline for running a regex search on your garbage string columns.
+2. I know you won't provide proper details for the target columns' name so I will default it using the garbage column name you want to run this method for. 
+3. Provide proper details pls. follow the default pipeline to run the module.
+
 ## Coming soon:
 1. Classification models
 2. Unsupervised learning.
