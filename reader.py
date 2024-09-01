@@ -6,7 +6,6 @@ from utils import visualize as viz
 import sys
 pd.set_option('display.max_columns', None)
 
-
 total_args = len(sys.argv)
 if total_args > 2:
     print("Too many arguments have been passed. Only specify one pipeline at a time")
@@ -23,9 +22,10 @@ with open(f"./pipelines/{pipe_name}") as instructions:
     except Exception as e:
         print(e)
 
-print(instructionsList)
+# print(instructionsList)
 for instruction in instructionsList:
-    current_instruction = instruction.keys()
+    current_instruction = list(instruction.keys())
+    print(f"Running Instruction: {current_instruction[0]}")
     if "data_loader" in current_instruction:
         processedData = pt.read_data(instruction)  
     elif "view_data" in current_instruction:
@@ -36,12 +36,12 @@ for instruction in instructionsList:
         print(processedData.info())
     elif "fix_datatype" in current_instruction:
         processedData = pt.fix_datatypes(processedData, instruction)
-    elif "sanitize_data" in current_instruction:
-        processedData = pt.sanitize_headers(processedData) 
     elif "filter_data" in current_instruction:
         processedData = pt.filter_data(processedData, instruction)
     elif "group_data" in current_instruction:
         processedData = pt.group_data(processedData, instruction)
+    elif "regex_search" in current_instruction:
+        processedData = pt.find_regex_string(processedData, instruction)
     elif "single_column_transformer" in current_instruction:
         processedData = pt.feature_engineer_single_col(processedData, instruction)
     elif "scale_data" in current_instruction:

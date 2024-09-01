@@ -1,0 +1,17 @@
+instructions:
+- data_loader: 
+    file_path: "./data/healthcare_dataset.csv"
+    sanitize_data: True
+
+- regex_search: ## Will provide a new column with a flag
+    pattern: "ann" ## You can specify a regex pattern here
+    column: name
+    # target_column_name: johnson_in_name ## Custom column name
+
+- filter_data:
+    column: name_exists_flag
+    filter_value: True
+    operator: "=="
+
+- data_store: 
+    path: "./exports/regex_filtered.csv"
